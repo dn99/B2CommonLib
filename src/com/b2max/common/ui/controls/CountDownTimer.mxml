@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Label xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="init()">
+
+	<fx:Metadata>
+		[Event(name="timeOut",type="flash.events.Event")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.formatters.DateFormatter;
+
+			[Bindable] public var timerInterval:int = 100;
+			[Bindable] public var maxSeconds:uint;
+			[Bindable] public var pattern:String = "N:SS";
+			[Bindable] public var warningSeconds:uint = 10;
+			[Bindable] public var warningColor:uint = 0xff0000;
+			[Bindable] public var defaultColor:uint = 0x333333;
+
+			public var date:Date;
+			public var progressTime:Date;
+			
+			private var dateFormatter:DateFormatter;
+			private var baseTimer:int;
+			private var timer:Timer;
+			private var timeCount:int = 2000;
+			private var renderTime:int;
+			
+			private function init():void
+			{
+				dateFormatter = new DateFormatter();
+				dateFormatter.formatString = pattern;
+
+				timer = new Timer( timerInterval );
+				timer.addEventListener( TimerEvent.TIMER, updateTimer );
+			}
+
+			private function updateTimer( event:TimerEvent ):void
+			{
+				timeCount += timerInterval;
+				renderTime = ( (maxSeconds * 1000) - (getTimer() - baseTimer) );
+				if ( renderTime <= 0 )
+				{
+					initTimer();
+					dispatchEvent( new Event( "timeOut", true ) );
+				}
+
+				var seconds:int = renderTime / 1000;
+				if ( seconds < warningSeconds )
+				{
+					this.setStyle( "color", warningColor );
+				}
+
+				progressTime = new Date( timeCount );
+				date = new Date( renderTime );
+				this.text = dateFormatter.format( date );
+				//trace( "::::::: " + dateFormatter.format( progressTime ) );
+			}
+
+			public function initTimer():void
+			{
+				maxSeconds = 0;
+				timeCount = 2000;
+				renderTime = 1;
+				if ( timer ) timer.stop();
+				this.setStyle( "color", defaultColor );
+			}
+			
+			private function setMaxSeconds( min:int, sec:int ):void
+			{
+				maxSeconds = min * 60 + sec + 1;
+			}
+			
+			public function startTimer( min:int, sec:int ):void
+			{
+				initTimer();
+				setMaxSeconds( min, sec );
+				
+				baseTimer = getTimer();
+				timer.start();
+			}
+
+			public function stopTimer():void
+			{
+				
+			}
+		]]>
+	</fx:Script>
+	
+</s:Label>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TextInput xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			 xmlns:s="library://ns.adobe.com/flex/spark" 
+			 xmlns:mx="library://ns.adobe.com/flex/mx"
+			 softKeyboardActivating="onSoftKeyboardActivatingHandler(event)"
+			 focusIn="textinput_focusInHandler(event)"
+			 enter="handlerFunction()"
+			 change="textinput_changeHandler(event)"
+			 text=""
+			 addedToStage="addedToStageHandler()"
+			 removedFromStage="removedFromStageHandler()">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.b2max.common.data.ConstData;
+			import com.b2max.common.data.GlobalData;
+			
+			import spark.events.TextOperationEvent;
+			
+			protected function addedToStageHandler():void 
+			{
+				if ( !skin ) attachSkin();
+			}
+			
+			protected function removedFromStageHandler():void 
+			{
+				try {
+					detachSkin();
+				} catch ( error:Error ) {}
+			}
+			
+			public function set viewMode( value:String ):void
+			{
+				switch ( value )
+				{
+					case ConstData.MODE_WEB : 
+					case ConstData.MODE_APP : 
+						setStyle( "skinClass", "com.b2max.ui.controls.skins.DefaultTextInputSkin" );
+						break;
+					case ConstData.MODE_MOBILE : 
+						setStyle( "skinClass", GlobalData.textInputSkinClass );
+						break;
+					default :
+						setStyle( "skinClass", "com.b2max.ui.controls.skins.DefaultTextInputSkin" );
+						
+				}
+			}
+			
+			protected function onSoftKeyboardActivatingHandler(event:SoftKeyboardEvent):void
+			{
+//				event.preventDefault();
+			}
+			
+			protected function textinput_focusInHandler(event:FocusEvent):void
+			{
+//				stage.focus = null;
+			}
+			
+			private function handlerFunction():void
+			{
+//				stage.focus = null
+			} 
+			
+			protected function textinput_changeHandler(event:TextOperationEvent):void
+			{
+				skin.currentState = "";
+				invalidateSkinState();
+			}
+			
+		]]>
+	</fx:Script>
+	
+</s:TextInput>

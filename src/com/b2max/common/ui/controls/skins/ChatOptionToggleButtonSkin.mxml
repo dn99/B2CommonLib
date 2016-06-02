@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+B2MAX Incorporated
+Copyright 2013 B2MAX Incorporated
+All Rights Reserved.
+
+NOTICE: B2MAX NEVER permits you to use, modify, and distribute this file.
+
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			 xmlns:s="library://ns.adobe.com/flex/spark"
+			 xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+			 alpha.disabled="0.5" 
+			 contentBackgroundColor.up="#F6F6F6" 
+			 contentBackgroundAlpha.up="0.0"
+			 creationComplete="creationCompleteHandler()">
+	
+	<!---
+	@FileName : PanelHeadToggleButtonSkin.mxml 
+	@Project : BXlayoutLib
+	@Author : B2MAX
+	@Details : 
+	-->
+	
+	<fx:Metadata>
+		[HostComponent("com.b2max.common.ui.controls.ChatOptionToggleButton")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			
+			protected function creationCompleteHandler():void
+			{
+				initProperties();
+			}
+			
+			private function initProperties():void
+			{
+				var btnName:String = hostComponent.id;
+				this[btnName].visible = true;
+			}
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="selected" />
+		<s:State name="deselected" />
+		
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+		<s:State name="upAndSelected" />
+		<s:State name="overAndSelected" />
+		<s:State name="downAndSelected" />
+		<s:State name="disabledAndSelected" />
+	</s:states>
+	
+	<s:Group id="boldBtn" visible="false"
+			 verticalCenter="0" horizontalCenter="0">
+		<s:BitmapImage smooth="true" horizontalCenter="0" verticalCenter="0"
+					   includeIn="selected, upAndSelected, overAndSelected, downAndSelected, disabledAndSelected"
+					   source="@Embed('./assets/controls/chat_bold_on.png')" />
+		<s:BitmapImage smooth="true" horizontalCenter="0" verticalCenter="0"
+					   includeIn="deselected, up, over, down, disabled, disabled"
+					   source="@Embed('./assets/controls/chat_bold_off.png')" />
+	</s:Group>
+	<s:Group id="italBtn" visible="false"
+			 verticalCenter="0" horizontalCenter="0">
+		<s:BitmapImage smooth="true" horizontalCenter="0" verticalCenter="0"
+					   includeIn="selected, upAndSelected, overAndSelected, downAndSelected, disabledAndSelected"
+					   source="@Embed('./assets/controls/chat_italic_on.png')" />
+		<s:BitmapImage smooth="true" horizontalCenter="0" verticalCenter="0"
+					   includeIn="deselected, up, over, down, disabled, disabled"
+					   source="@Embed('./assets/controls/chat_italic_off.png')" />
+	</s:Group>
+	<s:Group id="underBtn" visible="false"
+			 verticalCenter="0" horizontalCenter="0">
+		<s:BitmapImage smooth="true" horizontalCenter="0" verticalCenter="0"
+					   includeIn="selected, upAndSelected, overAndSelected, downAndSelected, disabledAndSelected"
+					   source="@Embed('./assets/controls/chat_line_on.png')" />
+		<s:BitmapImage smooth="true" horizontalCenter="0" verticalCenter="0"
+					   includeIn="deselected, up, over, down, disabled, disabled"
+					   source="@Embed('./assets/controls/chat_line_off.png')" />
+	</s:Group>
+	<s:Group id="btnOption" visible="false"
+			 verticalCenter="0" horizontalCenter="0">
+		<s:BitmapImage smooth="true" horizontalCenter="0" verticalCenter="0"
+					   includeIn="selected, upAndSelected, overAndSelected, downAndSelected, disabledAndSelected"
+					   source="@Embed('./assets/controls/icon_option_on.png')" />
+		<s:BitmapImage smooth="true" horizontalCenter="0" verticalCenter="0"
+					   includeIn="deselected, up, over, down, disabled, disabled"
+					   source="@Embed('./assets/controls/icon_option_off.png')" />
+	</s:Group>
+	
+</s:SparkSkin>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+B2MAX Incorporated
+Copyright 2013 B2MAX Incorporated
+All Rights Reserved.
+
+NOTICE: B2MAX NEVER permits you to use, modify, and distribute this file.
+
+-->
+<BaseToggleButton xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			      xmlns:s="library://ns.adobe.com/flex/spark"
+				  xmlns="com.b2max.common.ui.controls.*"
+				  skinClass="com.b2max.common.ui.controls.skins.MediaControlToggleButtonSkin">
+	
+	<!---
+	@FileName : MediaControlToggleButton.mxml 
+	@Project : BXlayoutLib
+	@Author : B2MAX
+	@Details : 
+	-->
+	
+	<fx:Script>
+		<![CDATA[
+			
+		]]>
+	</fx:Script>
+	
+</BaseToggleButton>

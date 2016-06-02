@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+B2MAX Incorporated
+Copyright 2013 B2MAX Incorporated
+All Rights Reserved.
+
+NOTICE: B2MAX NEVER permits you to use, modify, and distribute this file.
+
+-->
+<s:ToggleButton xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			    xmlns:s="library://ns.adobe.com/flex/spark"
+				buttonMode="true"
+				addedToStage="addedToStageHandler()"
+				removedFromStage="removedFromStageHandler()">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			[Bindable] public var onlyIcon:Boolean;
+			[Bindable] public var source:Object;
+			[Bindable] public var sourceSelected:Object;
+			[Bindable] public var sourceDeselected:Object;
+			[Bindable] public var bgColor:uint = 0xFFFFFF;
+			[Bindable] public var bgAlpha:Number = 1.0;
+			[Bindable] public var bgOverColor:uint = 0xEEEEEE;
+			[Bindable] public var fontSize:int = 11;
+			[Bindable] public var fontColor:uint = 0x666666;
+			[Bindable] public var fontAlpha:Number = 1.0;
+			[Bindable] public var fontWeight:String = "normal";
+			
+			[Bindable] public var isOnOff:Boolean;
+			
+			override protected function updateDisplayList( unscaledWidth:Number, unscaleHeight:Number ):void
+			{
+				super.updateDisplayList( unscaledWidth, unscaledHeight );
+				
+				if ( label ) onlyIcon = false;
+				else		 onlyIcon = true;
+			}
+			
+			protected function addedToStageHandler():void 
+			{
+				if ( !skin ) attachSkin();
+			}
+			
+			protected function removedFromStageHandler():void 
+			{
+				try {
+					detachSkin();
+				} catch ( error:Error ) {}
+			}
+			
+		]]>
+	</fx:Script>
+	
+</s:ToggleButton>

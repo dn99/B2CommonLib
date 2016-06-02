@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  buttonMode="true"
+		  addedToStage="addedToStageHandler()"
+		  removedFromStage="removedFromStageHandler()">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			[Bindable] public var onlyIcon:Boolean;
+			[Bindable] public var source:Object;
+			[Bindable] public var borderColor:uint = 0xAAAAAA;
+			[Bindable] public var bgColor:uint = 0xFFFFFF;
+			[Bindable] public var bgAlpha:Number = 1.0;
+			[Bindable] public var bgOverColor:uint = 0xEEEEEE;
+			[Bindable] public var fontSize:int = 11;
+			[Bindable] public var fontColor:uint = 0x666666;
+			[Bindable] public var fontAlpha:Number = 1.0;
+			[Bindable] public var fontWeight:String = "normal";
+			[Bindable] public var padding:int;
+			
+			[Bindable] public var data:Object;
+			
+			override protected function updateDisplayList( unscaledWidth:Number, unscaleHeight:Number ):void
+			{
+				super.updateDisplayList( unscaledWidth, unscaledHeight );
+				
+				if ( label ) onlyIcon = false;
+				else		 onlyIcon = true;
+			}
+			
+			protected function addedToStageHandler():void 
+			{
+				if ( !skin ) attachSkin();
+			}
+			
+			protected function removedFromStageHandler():void 
+			{
+				try {
+					detachSkin();
+				} catch ( error:Error ) {}
+			}
+		]]>
+	</fx:Script>
+	
+</s:Button>
